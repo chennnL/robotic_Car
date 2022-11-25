@@ -6,10 +6,15 @@
 Ports Used
 
 Port 4 Pin 0 -> Motor
+
 Port 4 Pin 2 -> Motor
+
 Port 4 Pin 4 -> Motor
+
 Port 4 Pin 5 -> Motor
+
 Port 2 Pin 4 -> Motor Left Out
+
 Port 2 Pin 5 -> Motor Right Out
 
 
