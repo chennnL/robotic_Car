@@ -1,7 +1,8 @@
 # Ultrasonic
 
 Ultrasonic Sensor: HC-SR04
-The user manuel for this sensor can be found here: https://web.eece.maine.edu/~zhu/book/lab/HC-SR04%20User%20Manual.pdf
+
+The user manual for this sensor can be found here: https://web.eece.maine.edu/~zhu/book/lab/HC-SR04%20User%20Manual.pdf
 
 ## Objective
 
@@ -11,6 +12,11 @@ The goal of this project is to use the ultrasonic sensor as a form of obstacle d
 
 
 
+
+## Authors
+1. Lim Wei, Jourdan			[2102516]
+2. Nasruddine Louahemmsabah 	[2100835]
+3. Perpetua Sorubha Raj 		[2101771]
 
 ## License
 
