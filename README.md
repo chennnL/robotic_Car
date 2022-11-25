@@ -23,15 +23,14 @@ Functions we have
 1) Motor_Drive_Forward_Slow
 - Motor moves slowly
 - PWM set at 5000,5000
+- - target for fast pwm is 20 notch/second
 
-2) Motor_Drive_Forward_Middle
-- Motor moves at normal speed
-- PWM set at 7000,7000
 
 3) Motor_Drive_Forward_Fast
 - Motor moves fast
 - Good for driving over humps
-- PWM set at 10000,10000
+- PWM set at 9000,9000
+- target for fast pwm is 25 notch/second
 
 4) Motor_Turn_Left
 - Motor turns left by 90 degrees
