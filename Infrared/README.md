@@ -1,16 +1,14 @@
 # Infrared (Wheel Encoder & Barcode Scanner)
 Refer to Barcode Analysis.docx for our detailed analysis.
 
-/*---------------------------------------------------------------------------------------------------------------*/
 
-Port & Pins Used:  
+#### Port & Pins Used:  
   
 (1) P5.5           (ADC  input)    
 (2) P6.5 and P6.4  (GPIO inputs)  
 
-/*---------------------------------------------------------------------------------------------------------------*/
 
-Defines:
+#### Defines:
 
 (1) #define ON  1  
 (2) #define OFF 0  
@@ -29,9 +27,8 @@ Defines:
           uint16_t         hours;  
       } wheelTime;  
   
-/*---------------------------------------------------------------------------------------------------------------*/  
   
-Global Variables:  
+#### Global Variables:  
   
 (1) static volatile uint8_t   ADC_State;  
 (2) static volatile uint32_t  ADC_index;  
@@ -44,9 +41,8 @@ Global Variables:
 (9) static volatile double    rightWheelSpeed;  
 (10) static volatile char     decodedAlphabet;  
   
-/*---------------------------------------------------------------------------------------------------------------*/  
   
-Infrared Submodule Functions:  
+#### Infrared Submodule Functions:  
   
 (1) void setupADC(void);  
 (2) void startADC(void);  
@@ -58,13 +54,9 @@ Infrared Submodule Functions:
 (8) void leftWheelSpeed(void);  
 (9) void rightWheelSpeed(void);  
   
-/*---------------------------------------------------------------------------------------------------------------*/  
 
-Interrupt Used:  
+#### Interrupt Used:  
   
 (1) void ADC14_IRQHandler(void);   // ADC_INT0  
 (2) void TA1_0_IRQHandler(void);   // TIMER_A1_BASE  
 (3) void PORT6_IRQHandler(void);    
-  
-/*---------------------------------------------------------------------------------------------------------------*/  
-  
