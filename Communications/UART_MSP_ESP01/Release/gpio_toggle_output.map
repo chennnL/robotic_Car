@@ -1,0 +1,243 @@
+******************************************************************************
+                  TI ARM Linker Unix v20.2.4                   
+******************************************************************************
+>> Linked Sun Nov 20 03:41:04 2022
+
+OUTPUT FILE NAME:   <gpio_toggle_output.out>
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 000006f1
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  MAIN                  00000000   00040000  00000884  0003f77c  R  X
+  INFO                  00200000   00004000  00000000  00004000  R  X
+  SRAM_CODE             01000000   00010000  00000000  00010000  RW X
+  SRAM_DATA             20000000   00010000  0000027c  0000fd84  RW  
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    00000884   00000884    r-x
+  00000000    00000000    00000140   00000140    r-- .intvecs
+  00000140    00000140    000006f0   000006f0    r-x .text
+  00000830    00000830    00000054   00000054    r-- .cinit
+20000000    20000000    0000007c   00000000    rw-
+  20000000    20000000    0000007c   00000000    rw- .data
+2000fe00    2000fe00    00000200   00000000    rw-
+  2000fe00    2000fe00    00000200   00000000    rw- .stack
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    00000140     
+                  00000000    00000140     startup_msp432p401r_ccs.obj (.intvecs:retain)
+
+.text      0    00000140    000006f0     
+                  00000140    000001e4     system_msp432p401r.obj (.text)
+                  00000324    000000f8     gpio_toggle_output.obj (.text)
+                  0000041c    000000dc     msp432p4xx_driverlib.lib : pcm.o (.text:__PCM_setPowerModeAdvanced)
+                  000004f8    000000b0                              : pcm.o (.text:__PCM_setCoreVoltageLevelAdvanced)
+                  000005a8    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.asm.obj (.text)
+                  00000644    00000068                                   : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  000006ac    00000044                                   : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
+                  000006f0    00000034                                   : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
+                  00000724    0000002c     msp432p4xx_driverlib.lib : pcm.o (.text:PCM_getCoreVoltageLevel)
+                  00000750    0000002a                              : pcm.o (.text:PCM_getPowerMode)
+                  0000077a    00000002     --HOLE-- [fill = 0]
+                  0000077c    00000028                              : flash.o (.text:FlashCtl_setWaitState)
+                  000007a4    00000024                              : cs.o (.text:CS_setDCOCenteredFrequency)
+                  000007c8    00000024                              : gpio.o (.text:GPIO_setAsOutputPin)
+                  000007ec    00000012     startup_msp432p401r_ccs.obj (.text)
+                  000007fe    0000000e     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  0000080c    0000000c     msp432p4xx_driverlib.lib : pcm.o (.text:PCM_getPowerState)
+                  00000818    00000008                              : pcm.o (.text:PCM_setCoreVoltageLevel)
+                  00000820    00000008                              : pcm.o (.text:PCM_setPowerMode)
+                  00000828    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  0000082c    00000004                                   : exit.c.obj (.text:abort:abort)
+
+.cinit     0    00000830    00000054     
+                  00000830    00000043     (.cinit..data.load) [load image, compression = lzss]
+                  00000873    00000001     --HOLE-- [fill = 0]
+                  00000874    00000008     (__TI_handler_table)
+                  0000087c    00000008     (__TI_cinit_table)
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.data      0    20000000    0000007c     UNINITIALIZED
+                  20000000    00000030     msp432p4xx_driverlib.lib : gpio.o (.data:GPIO_PORT_TO_BASE)
+                  20000030    00000024     gpio_toggle_output.obj (.data:UART0Config)
+                  20000054    00000024     gpio_toggle_output.obj (.data:UART2Config)
+                  20000078    00000004     system_msp432p401r.obj (.data)
+
+.stack     0    2000fe00    00000200     UNINITIALIZED
+                  2000fe00    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
+                  2000fe04    000001fc     --HOLE--
+
+__llvm_prf_cnts 
+*          0    20000000    00000000     UNINITIALIZED
+
+MODULE SUMMARY
+
+       Module                        code   ro data   rw data
+       ------                        ----   -------   -------
+    ./
+       system_msp432p401r.obj        484    0         4      
+       startup_msp432p401r_ccs.obj   18     320       0      
+       gpio_toggle_output.obj        248    0         72     
+    +--+-----------------------------+------+---------+---------+
+       Total:                        750    320       76     
+                                                             
+    /Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/lib/rtsv7M4_T_le_v4SPD16_eabi.lib
+       memcpy_t2.asm.obj             156    0         0      
+       copy_decompress_lzss.c.obj    104    0         0      
+       autoinit.c.obj                68     0         0      
+       boot_cortex_m.c.obj           52     0         0      
+       copy_decompress_none.c.obj    14     0         0      
+       exit.c.obj                    4      0         0      
+       pre_init.c.obj                4      0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        402    0         0      
+                                                             
+    /Users/dwdr/Downloads/msp432_driverlib_3_21_00_05/driverlib/MSP432P4xx/ccs/msp432p4xx_driverlib.lib
+       pcm.o                         510    0         0      
+       gpio.o                        36     0         48     
+       flash.o                       40     0         0      
+       cs.o                          36     0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        622    0         48     
+                                                             
+       Stack:                        0      0         512    
+       Linker Generated:             0      83        0      
+    +--+-----------------------------+------+---------+---------+
+       Grand Total:                  1774   403       636    
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 0000087c records: 1, size/record: 8, table size: 8
+	.data: load addr=00000830, load size=00000043 bytes, run addr=20000000, run size=0000007c bytes, compression=lzss
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00000874 records: 2, size/record: 4, table size: 8
+	index: 0, handler: __TI_decompress_lzss
+	index: 1, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                          
+-------   ----                          
+0000082d  C$$EXIT                       
+000007a5  CS_setDCOCenteredFrequency    
+UNDEFED   ESP8266_Terminal              
+UNDEFED   EUSCIA0_IRQHandler            
+0000077d  FlashCtl_setWaitState         
+000007c9  GPIO_setAsOutputPin           
+00000725  PCM_getCoreVoltageLevel       
+00000751  PCM_getPowerMode              
+0000080d  PCM_getPowerState             
+00000819  PCM_setCoreVoltageLevel       
+00000821  PCM_setPowerMode              
+20000078  SystemCoreClock               
+00000193  SystemCoreClockUpdate         
+00000141  SystemInit                    
+20000030  UART0Config                   
+20000054  UART2Config                   
+UNDEFED   UART_Printf                   
+4000480c  WDTCTL_SYM                    
+20010000  __STACK_END                   
+00000200  __STACK_SIZE                  
+0000087c  __TI_CINIT_Base               
+00000884  __TI_CINIT_Limit              
+00000874  __TI_Handler_Table_Base       
+0000087c  __TI_Handler_Table_Limit      
+000006ad  __TI_auto_init_nobinit_nopinit
+00000645  __TI_decompress_lzss          
+000007ff  __TI_decompress_none          
+ffffffff  __TI_pprof_out_hndl           
+ffffffff  __TI_prof_data_size           
+ffffffff  __TI_prof_data_start          
+00000000  __TI_static_base__            
+000005a9  __aeabi_memcpy                
+000005a9  __aeabi_memcpy4               
+000005a9  __aeabi_memcpy8               
+ffffffff  __binit__                     
+ffffffff  __c_args__                    
+UNDEFED   __mpu_init                    
+2000fe00  __stack                       
+20000000  __start___llvm_prf_cnts       
+20000000  __stop___llvm_prf_cnts        
+000006f1  _c_int00_noargs               
+UNDEFED   _system_post_cinit            
+00000829  _system_pre_init              
+0000082d  abort                         
+ffffffff  binit                         
+00000000  interruptVectors              
+00000325  main                          
+000005a9  memcpy                        
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                          
+-------   ----                          
+00000000  __TI_static_base__            
+00000000  interruptVectors              
+00000141  SystemInit                    
+00000193  SystemCoreClockUpdate         
+00000200  __STACK_SIZE                  
+00000325  main                          
+000005a9  __aeabi_memcpy                
+000005a9  __aeabi_memcpy4               
+000005a9  __aeabi_memcpy8               
+000005a9  memcpy                        
+00000645  __TI_decompress_lzss          
+000006ad  __TI_auto_init_nobinit_nopinit
+000006f1  _c_int00_noargs               
+00000725  PCM_getCoreVoltageLevel       
+00000751  PCM_getPowerMode              
+0000077d  FlashCtl_setWaitState         
+000007a5  CS_setDCOCenteredFrequency    
+000007c9  GPIO_setAsOutputPin           
+000007ff  __TI_decompress_none          
+0000080d  PCM_getPowerState             
+00000819  PCM_setCoreVoltageLevel       
+00000821  PCM_setPowerMode              
+00000829  _system_pre_init              
+0000082d  C$$EXIT                       
+0000082d  abort                         
+00000874  __TI_Handler_Table_Base       
+0000087c  __TI_CINIT_Base               
+0000087c  __TI_Handler_Table_Limit      
+00000884  __TI_CINIT_Limit              
+20000000  __start___llvm_prf_cnts       
+20000000  __stop___llvm_prf_cnts        
+20000030  UART0Config                   
+20000054  UART2Config                   
+20000078  SystemCoreClock               
+2000fe00  __stack                       
+20010000  __STACK_END                   
+4000480c  WDTCTL_SYM                    
+ffffffff  __TI_pprof_out_hndl           
+ffffffff  __TI_prof_data_size           
+ffffffff  __TI_prof_data_start          
+ffffffff  __binit__                     
+ffffffff  __c_args__                    
+ffffffff  binit                         
+UNDEFED   ESP8266_Terminal              
+UNDEFED   EUSCIA0_IRQHandler            
+UNDEFED   UART_Printf                   
+UNDEFED   __mpu_init                    
+UNDEFED   _system_post_cinit            
+
+[48 symbols]

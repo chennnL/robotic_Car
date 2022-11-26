@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?ccsproject version="1.0"?>
+<projectOptions>
+	<ccsVersion value="10.3.0"/>
+	<deviceVariant value="MSP432P401R"/>
+	<deviceFamily value="MSP432"/>
+	<deviceEndianness value="little"/>
+	<codegenToolVersion value="20.2.4.LTS"/>
+	<isElfFormat value="true"/>
+	<linkerCommandFile value="gpio_input_interrupt_ccs.cmd"/>
+	<rts value="libc.a"/>
+	<createSlaveProjects value=""/>
+	<ignoreDefaultDeviceSettings value="true"/>
+	<templateProperties value="id=gpio_input_interrupt.projectspec.gpio_input_interrupt"/>
+	<origin value="/Users/dwdr/Downloads/msp432_driverlib_3_21_00_05/examples/MSP432P4xx/gpio/gpio_input_interrupt/ccs/gpio_input_interrupt.projectspec"/>
+	<filesToOpen value="gpio_input_interrupt.c"/>
+</projectOptions>
