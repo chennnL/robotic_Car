@@ -18,7 +18,7 @@ The user manual for this sensor can be found here: https://invensense.tdk.com/wp
 
 ## Objective
 
-The objective of the accelerometer is to detect and measure the height of the hump. By making use of Moving average, we were able to manipulate the raw data that was initially displayed to display out values equating to the distance. We made use of Raspberry Pico for the accelerometer. 
+The objective of the accelerometer is to detect and measure the height of the hump. By making use of Moving Average, we were able to manipulate the raw data that was initially displayed to display out values equating to the distance. We made use of Raspberry Pico for the accelerometer. 
 
 
 ### Authors
