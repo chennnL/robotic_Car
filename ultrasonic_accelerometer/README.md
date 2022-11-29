@@ -6,18 +6,23 @@ The user manual for this sensor can be found here: https://web.eece.maine.edu/~z
 
 ## Objective
 
-The goal of this project is to use the ultrasonic sensor as a form of obstacle detection to aid the robotic car as it traverses through a maze. The sensor will constantly shoot out 10 microsecond pulses at an interval of 60 milliseconds; the duration of those pulses will be stored and used to calculate the distance.
+The goal of the ultrasonic sensor is to aid the robotic car as it traverses through a maze using object detection. The sensor will constantly shoot out 10 microsecond pulses at an interval of 60 milliseconds; the duration of those pulses will be stored and used to calculate the distance.
 
 # Accelerometer
 
+Accelerometer: MPU6050
+
+The user manual for this sensor can be found here: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
+
+## Objective
+
+The goal of the accelerometer is to measure the x, y, and z axes of the robotic car as it traverses through the maze.
 
 
-
-## Authors
+### Authors
 1. Lim Wei, Jourdan			[2102516]
 2. Nasruddine Louahemmsabah 	[2100835]
 3. Perpetua Sorubha Raj 		[2101771]
 
-## License
-
+### License
 [MIT](https://choosealicense.com/licenses/mit/)
