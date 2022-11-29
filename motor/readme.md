@@ -32,6 +32,12 @@ Port 2 Pin 5 -> Motor Right Out
 ####  Motor_Turn_Right
 - Motor turns right by 90 degrees
 
+####  Motor_Turn_Right_45
+- Motor turns right by 45 degrees
+
+####  Motor_Turn_Left_45
+- Motor turns left by 45 degrees
+
 ####  Motor_uTurn
 - Motor uTurns
 - Motor turns by 180 degrees (to the right)
