@@ -17,14 +17,14 @@ Port 2 Pin 5 -> Motor Right Out
 #### Motor_Drive_Forward_Slow
 - Motor moves slowly
 - PWM set at 5000,5000
-- - target for fast pwm is 20 notch/second
+- - target for fast pwm is 19 notch/second
 
 
 ####  Motor_Drive_Forward_Fast
 - Motor moves fast
 - Good for driving over humps
-- PWM set at 9000,9000
-- target for fast pwm is 25 notch/second
+- PWM set at 7000,7000
+- target for fast pwm is 22 notch/second
 
 ####  Motor_Turn_Left
 - Motor turns left by 90 degrees
@@ -45,3 +45,4 @@ Port 2 Pin 5 -> Motor Right Out
 
 ### Author
 Chen Wujie 2101169
+Izz Danial 2100735
