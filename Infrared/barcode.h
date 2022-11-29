@@ -44,8 +44,8 @@ char guessBarcode(double);
 char scanBarcode(void);
 
 double getWheelTime( wheelTime* );
-void leftWheelSpeed(void);
-void rightWheelSpeed(void);
+void LeftWheelSpeed(void);
+void RightWheelSpeed(void);
 
 void setupUART(void);
 void uPrintf(unsigned char * TxArray);
@@ -61,6 +61,6 @@ static volatile wheelTime  rightwheelTime = {0,0,0,0};
 static volatile double     leftWheelSpeed;
 static volatile double     rightWheelSpeed;
 static volatile double     distanceTravelled;
-static volatile char       decodedAlphabet;
+static volatile char decodedAlphabet;
 
 #endif

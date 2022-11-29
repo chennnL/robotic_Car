@@ -13,15 +13,15 @@ int main(void)
     rightWheelSpeed   = 0.0;
     distanceTravelled = 0.0;
 
-    setupS1();            
-    setupS2();            
-    setupPWM();           
+    setupS1();            // utility function to be removed (not part of infrared sub-module)
+    setupS2();            // utility function to be removed (not part of infrared sub-module)
+    setupPWM();           // utility function to be removed (not part of infrared sub-module)
 
     // Infrared
     setupWheelEncoders(); // port 6 interrupt input
     setupADC();
 
-    setupUART();         
+    setupUART();          // utility function to be removed (not part of infrared sub-module)
 
     MAP_Interrupt_enableSleepOnIsrExit();
     MAP_Interrupt_enableMaster();

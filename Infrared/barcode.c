@@ -38,21 +38,20 @@ Timer_A_PWMConfig leftDCMotor =
         5000
 };
 
-
 void setupS1(void)
 {
-    MAP_GPIO_setAsInputPinWithPullUpResistor( GPIO_PORT_P1, GPIO_PIN1 );
-    MAP_GPIO_clearInterruptFlag(              GPIO_PORT_P1, GPIO_PIN1 );
-    MAP_GPIO_enableInterrupt(                 GPIO_PORT_P1, GPIO_PIN1 );
-    MAP_Interrupt_enableInterrupt(               INT_PORT1);
+    MAP_GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_P1, GPIO_PIN1);
+    MAP_GPIO_clearInterruptFlag(GPIO_PORT_P1, GPIO_PIN1);
+    MAP_GPIO_enableInterrupt(GPIO_PORT_P1, GPIO_PIN1);
+    MAP_Interrupt_enableInterrupt(INT_PORT1);
 }
 
 void setupS2(void)
 {
-    MAP_GPIO_setAsInputPinWithPullUpResistor( GPIO_PORT_P1, GPIO_PIN4 );
-    MAP_GPIO_clearInterruptFlag(              GPIO_PORT_P1, GPIO_PIN4 );
-    MAP_GPIO_enableInterrupt(                 GPIO_PORT_P1, GPIO_PIN4 );
-    MAP_Interrupt_enableInterrupt(               INT_PORT1);
+    MAP_GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_P1, GPIO_PIN4);
+    MAP_GPIO_clearInterruptFlag(GPIO_PORT_P1, GPIO_PIN4);
+    MAP_GPIO_enableInterrupt(GPIO_PORT_P1, GPIO_PIN4);
+    MAP_Interrupt_enableInterrupt(INT_PORT1);
 }
 
 void setupADC(void)
@@ -64,9 +63,9 @@ void setupADC(void)
     MAP_FPU_enableLazyStacking();
 
     MAP_ADC14_enableModule();
-    MAP_ADC14_initModule( ADC_CLOCKSOURCE_MCLK, ADC_PREDIVIDER_1,ADC_DIVIDER_1,0);
+    MAP_ADC14_initModule(ADC_CLOCKSOURCE_MCLK, ADC_PREDIVIDER_1,ADC_DIVIDER_1,0);
 
-    MAP_GPIO_setAsPeripheralModuleFunctionInputPin( GPIO_PORT_P5, GPIO_PIN5, GPIO_TERTIARY_MODULE_FUNCTION);
+    MAP_GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P5, GPIO_PIN5, GPIO_TERTIARY_MODULE_FUNCTION);
 
     MAP_ADC14_configureSingleSampleMode(ADC_MEM0, true);
     MAP_ADC14_configureConversionMemory(ADC_MEM0, ADC_VREFPOS_AVCC_VREFNEG_VSS, ADC_INPUT_A0, false);
@@ -126,7 +125,6 @@ void setupWheelEncoders(void)
             TIMER_A_DO_CLEAR                        // Clear value
     };
 
-
     MAP_Timer_A_configureUpMode(TIMER_A1_BASE, &timerA_config);
     MAP_Timer_A_startCounter(TIMER_A1_BASE, TIMER_A_UP_MODE);
     MAP_Interrupt_enableInterrupt(INT_TA1_0);
@@ -134,19 +132,19 @@ void setupWheelEncoders(void)
     // set Pin 6.5 as wheel encoder
     MAP_GPIO_setAsInputPin(GPIO_PORT_P6, GPIO_PIN5);
     MAP_GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_P6, GPIO_PIN5);
-    MAP_GPIO_interruptEdgeSelect(GPIO_PORT_P6, GPIO_PIN5 , GPIO_LOW_TO_HIGH_TRANSITION);
+    MAP_GPIO_interruptEdgeSelect(GPIO_PORT_P6, GPIO_PIN5, GPIO_LOW_TO_HIGH_TRANSITION);
     MAP_GPIO_clearInterruptFlag(GPIO_PORT_P6, GPIO_PIN5);
     MAP_GPIO_enableInterrupt(GPIO_PORT_P6, GPIO_PIN5);
 
     // set Pin 6.4 as wheel encoder
     MAP_GPIO_setAsInputPin(GPIO_PORT_P6, GPIO_PIN4);
     MAP_GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_P6, GPIO_PIN4);
-    MAP_GPIO_interruptEdgeSelect(GPIO_PORT_P6, GPIO_PIN4 , GPIO_LOW_TO_HIGH_TRANSITION);
+    MAP_GPIO_interruptEdgeSelect(GPIO_PORT_P6, GPIO_PIN4, GPIO_LOW_TO_HIGH_TRANSITION);
     MAP_GPIO_clearInterruptFlag(GPIO_PORT_P6, GPIO_PIN4);
     MAP_GPIO_enableInterrupt(GPIO_PORT_P6, GPIO_PIN4);
 
-    MAP_GPIO_setAsOutputPin(GPIO_PORT_P1, GPIO_PIN0);      // set P1.0 LED1 as output
-    MAP_GPIO_setOutputLowOnPin(GPIO_PORT_P1, GPIO_PIN0);   // Turn LED1 Red on
+//    MAP_GPIO_setAsOutputPin(GPIO_PORT_P1, GPIO_PIN0);      // set P1.0 LED1 as output
+//    MAP_GPIO_setOutputLowOnPin(GPIO_PORT_P1, GPIO_PIN0);   // Turn LED1 Red on
 
     MAP_Interrupt_enableInterrupt(INT_PORT6);
 }
@@ -211,22 +209,26 @@ void uPrintf(unsigned char * TxArray)
     }
 }
 
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------------------------------------------------------------------------*/
 void PORT1_IRQHandler(void)
 {
     uint32_t status = MAP_GPIO_getEnabledInterruptStatus(GPIO_PORT_P1);
     MAP_GPIO_clearInterruptFlag(GPIO_PORT_P1, status);
 
-    if( status & GPIO_PIN1 )  // switch 1
+    if(status & GPIO_PIN1)   // switch 1
     {
         startADC();
-        startPWM(7000,7800);  // left, right
+        startPWM(7000,7800); // left, right
     }
 
-    if( status & GPIO_PIN4 )  // switch 2
+    if(status & GPIO_PIN4)   // switch 2
     {
         stopADC();
-        startPWM(0,0);        // left, right
+        startPWM(0,0);       // left, right
     }
 }
 
@@ -274,7 +276,7 @@ void ADC14_IRQHandler(void)
 
             smaller = (uint8_t)(0.2 * prev) + (uint8_t)(0.8 * smaller);          // apply smoothing, (80% of latest plus 20% of previous)
 
-            if(ADC_index < ARRAY_SIZE && data < SIGNAL_FILTER)
+            if( ADC_index < ARRAY_SIZE && data < SIGNAL_FILTER )
             {
                 x[ADC_index]     =  smaller;
                 sum_of_x        +=  smaller;            // uint32_t, sum( x )
@@ -286,7 +288,7 @@ void ADC14_IRQHandler(void)
         }
         else
         {
-            decodedAlphabet = ScanBarcode();
+            decodedAlphabet = scanBarcode();
             sum_of_x        = 0;
             sum_of_x_square = 0;
             prev            = 0;
@@ -340,6 +342,21 @@ void TA1_0_IRQHandler(void)
             }
         }
     }
+
+//    counter++;
+//    counter %= 1000;
+//    if(counter == 0)
+//    {
+//        MAP_GPIO_setOutputHighOnPin(GPIO_PORT_P1, GPIO_PIN0);   // Turn LED1 Red on
+//        if(!ADC_State)
+//        {
+//            printf("Total distance travelled : %lf cm , Left Wheel Speed : %lf cm/s , Right Wheel Speed : %lf cm/s\n", distanceTravelled, leftWheelSpeed, rightWheelSpeed);
+//        }
+//    }
+//    else if(counter == 500)
+//    {
+//        MAP_GPIO_setOutputLowOnPin(GPIO_PORT_P1, GPIO_PIN0);    // Turn LED1 Red off
+//        }
 }
 
 char guessBarcode(double average_adjustment)
@@ -360,22 +377,22 @@ char guessBarcode(double average_adjustment)
          double z_score    = 0.0;
          uint32_t total    = 0;
          uint32_t barcode  = 0;
-         right_side =  ((double)(sum_of_x) / ((double)ADC_index )) * (double)(sum_of_x);
+         right_side =  ( (double)( sum_of_x ) / ( (double)ADC_index ) ) * (double)( sum_of_x );
          variance   =   ((double)sum_of_x_square - right_side)/((double)(ADC_index - 1));
          stdev      = sqrt(variance);
-         average    = ((sum_of_x / ((double)ADC_index)) * average_adjustment);  // adjust average to find cutoff between black and white signals.
+         average    = ((sum_of_x / ((double)ADC_index)) * average_adjustment );  // adjust average to find cutoff between black and white signals.
          //printf("\ncount is %u , sum_of_x is %u , sum_of_x_square is %u , right side is %lf , average is %lf , variance is %lf , stdev is %lf\n", ADC_index , sum_of_x, sum_of_x_square , right_side, average, variance , stdev);
          //uPrintf("Started\n\r");
-         for( i=0 ; i < ADC_index && i < ARRAY_SIZE ; i++ )
+         for(i=0 ; i < ADC_index && i < ARRAY_SIZE ; i++)
          {
-             z_score = (((double)x[i]) - average) / stdev;
+             z_score = ( ((double)x[i]) - average ) / stdev;
              char buffer[6];
              ltoa(x[i], buffer, 10);
              //uPrintf(strcat(buffer, "\n\r"));
              if(z_score > 0)
              {
                  // black color
-                 if( currentColor == WHITE )
+                 if(currentColor == WHITE)
                  {
                      length = i - prevADCIndex;
                      //printf("Black[%i] = %u - %u = %u\n", patternsIndex, i, prevADCIndex, length);
@@ -414,10 +431,18 @@ char guessBarcode(double average_adjustment)
          if(patternsIndex < 29) return '?';
 
          int j;
-         for(j=0 ; j < 29 ; j++)
+         for( j=0 ; j < 29 ; j++ )
          {
            patterns[j] = 0;
-           if(((double)patternsLength[j] / (double)total) < SHORT_INTERVAL)
+//           if( j%2 == 0) // even index are black, odd are white
+//           {
+//               printf("Black[%u] = %u\n",j,patternsLength[j]);
+//           }
+//           else
+//           {
+//               printf("White[%u] = %u\n",j,patternsLength[j]);
+//           }
+           if( ( (double)patternsLength[j] / (double)total ) < SHORT_INTERVAL )
            {
                patterns[j] = 'S';
                barcode = (barcode << 1) | 0;
@@ -589,7 +614,7 @@ char scanBarcode(void)
         barcode = guessBarcode(adjustment);
         if( barcode != '?' )
         {
-         printf("Barcode found : '%c'\n",barcode);
+         printf("Barcode found : '%c\n'",barcode);
          decodedAlphabet = barcode;
          return barcode;
         }
@@ -603,6 +628,16 @@ char scanBarcode(void)
 }
 double getWheelTime( wheelTime *wt )
 {
+//    char buffer[50];
+//    ltoa(wt->hours,buffer,10);
+//    uPrintf(strcat(buffer, " hours, "));
+//    ltoa(wt->minutes,buffer,10);
+//    uPrintf(strcat(buffer, " minutes, "));
+//    ltoa(wt->seconds,buffer,10);
+//    uPrintf(strcat(buffer, " seconds, "));
+//    ltoa(wt->milliseconds,buffer,10);
+//    uPrintf(strcat(buffer, " milliseconds = "));
+
     uint32_t result = ( ( ( (wt->hours * 60) +  wt->minutes ) * 60 ) + wt->seconds ) * 1000 + wt->milliseconds ;
     wt->hours = 0;
     wt->minutes = 0;
@@ -615,28 +650,35 @@ double getWheelTime( wheelTime *wt )
     return ((double)result / 1000);
 }
 
-void leftWheelSpeed(void)
+void LeftWheelSpeed(void)
 {
-    if(leftDCMotor.dutyCycle == 0)
+    //if(left_duty_cycle == 0)
+    if( leftDCMotor.dutyCycle == 0)
     {
         leftWheelSpeed = 0.0;
     }
     else
     {
-        double seconds  = getWheelTime( &leftwheelTime );
+        double seconds  = getWheelTime(&leftwheelTime);
         leftWheelSpeed  = TICK_DISTANCE / seconds; // distance in cm / time in seconds = speed in cm/s
     }
 }
 
-void rightWheelSpeed(void)
+void RightWheelSpeed(void)
 {
-    if(rightDCMotor.dutyCycle == 0)
+    //if(right_duty_cycle == 0)
+    if( rightDCMotor.dutyCycle == 0)
     {
         rightWheelSpeed = 0.0;
     }
     else
     {
-        double seconds  = getWheelTime( &rightwheelTime );
+        double seconds  = getWheelTime(&rightwheelTime);
         rightWheelSpeed = TICK_DISTANCE / seconds; // distance in cm / time in seconds = speed in cm/s
     }
 }
+
+/*---------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------------------------------------*/
