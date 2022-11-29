@@ -11,8 +11,10 @@ static volatile float deltaspeed = 0;              // left wheel speed minus rig
 
 uint8_t TARGET = 20; // target notch count
 
+// char used in motor function calls
 char car_move;
 
+// Initialised PID Values
 static const float KP = 3;
 static const float KI = 0.5;
 static const float KD = 0.7;
@@ -33,11 +35,10 @@ uint16_t right_duty_cycle = 5000;
 volatile int sum_error = 0;
 volatile short int prev_error = 0;
 // gloable variable
-volatile static int16_t go_counter = 0;
-volatile static int16_t go_left_counter = 0;
-volatile static int16_t go_right_counter = 0;
-volatile static int16_t go_prev_error_left = 0;
-volatile static int16_t go_prev_error_right = 0;
+volatile static int16_t go_left_counter = 0;     // to count notches on left wheel
+volatile static int16_t go_right_counter = 0;    // to count notches on right wheel
+volatile static int16_t go_prev_error_left = 0;  // to store previous left error
+volatile static int16_t go_prev_error_right = 0; // to store previous right error
 volatile static int16_t go_sum_error_left = 0;
 volatile static int16_t go_sum_error_right = 0;
 
@@ -171,9 +172,11 @@ void Motor_Init()
     uPrintf("Going into LPM3\n\r");
 }
 
+/*First PID*/
+
 void PID()
 {
-    int error = go_left_counter - go_right_counter;
+    int error = go_left_counter - go_right_counter; // Error between notches on left and right wheel
 
     go_left_counter = 0; // left counter wheel
     go_right_counter = 0;
@@ -181,6 +184,8 @@ void PID()
 
     sum_error += error;
     printf(" sum_error : %d", sum_error);
+
+    // PID Formula
     int adjust = (KP * error) + (KI * sum_error) + (KD * (error - prev_error));
     prev_error = error;
     // printf(" used PWM: %d ",adjust);
@@ -196,6 +201,9 @@ void PID()
     Timer_A_generatePWM(TIMER_A0_BASE, &rightPWMConfig);
 }
 
+/*Second PID*/
+/* 1 PID for Left and Right wheel each*/
+
 void PID_Target()
 {
 
@@ -207,6 +215,7 @@ void PID_Target()
     int16_t derivative_left = error_left - go_prev_error_left;
     int16_t derivative_right = error_right - go_prev_error_right;
 
+    // PID Formula
     go_pid_left = (error_left * KP) + (derivative_left * KD) + (go_sum_error_left * KI);
     go_pid_right = (error_right * KP) + (derivative_right * KD) + (go_sum_error_right * KI);
 
@@ -218,6 +227,7 @@ void PID_Target()
     left_duty_cycle = MAX(MIN(left_duty_cycle, 10000), 0);
     right_duty_cycle = MAX(MIN(right_duty_cycle, 10000), 0);
 
+    // New PWM values to be set
     startPWM(left_duty_cycle, right_duty_cycle);
 
     print_pid_output(error_left, error_right, left_duty_cycle, right_duty_cycle);
@@ -233,6 +243,7 @@ void PID_Target()
     go_sum_error_right += error_right;
 }
 
+// Print function
 void print_pid_output(int16_t error_left, int16_t error_right, uint16_t left_duty_cycle, uint16_t right_duty_cycle)
 {
     printf("Left %d\t\t \tRight %d\n", go_left_counter, go_right_counter);
@@ -244,9 +255,9 @@ void print_pid_output(int16_t error_left, int16_t error_right, uint16_t left_dut
     printf("=================================\n");
 }
 
+// Reset all global variables to 0
 void clear_go_counter()
 {
-    go_counter = 0;
     go_left_counter = 0;
     go_right_counter = 0;
     go_prev_error_left = 0;
@@ -273,6 +284,7 @@ void TA1_0_IRQHandler(void)
     MAP_Timer_A_clearCaptureCompareInterrupt(TIMER_A1_BASE, TIMER_A_CAPTURECOMPARE_REGISTER_0);
 }
 
+// PWM set to 9000
 void Motor_Drive_Forward_Fast()
 {
 
@@ -292,6 +304,7 @@ void Motor_Drive_Forward_Fast()
     GPIO_setOutputLowOnPin(Left_Wheel_Pin2);
 }
 
+// PWM set to 7000
 void Motor_Drive_Forward_Slow()
 {
     clear_go_counter();
@@ -311,6 +324,7 @@ void Motor_Drive_Forward_Slow()
     startPWM(left_duty_cycle, right_duty_cycle);
 }
 
+// Car wheels move backward, reverse
 void Motor_Reverse()
 {
 
@@ -325,6 +339,7 @@ void Motor_Reverse()
     GPIO_setOutputLowOnPin(Left_Wheel_Pin0);
 }
 
+// Stop both motors
 void Motor_Stop()
 {
 
@@ -338,6 +353,7 @@ void Motor_Stop()
     GPIO_setOutputLowOnPin(Left_Wheel_Pin2);
 }
 
+// Stop the car, right motor
 void right_Motor_Stop()
 {
 
@@ -346,6 +362,8 @@ void right_Motor_Stop()
     GPIO_setOutputLowOnPin(Right_Wheel_Pin4);
     GPIO_setOutputLowOnPin(Right_Wheel_Pin5);
 }
+
+// Stop the car, left motor
 void left_Motor_Stop()
 {
 
@@ -355,6 +373,7 @@ void left_Motor_Stop()
     GPIO_setOutputLowOnPin(Left_Wheel_Pin2);
 }
 
+// Left turn by 90 degrees
 void Motor_Turn_Left()
 {
 
@@ -370,6 +389,7 @@ void Motor_Turn_Left()
     startPWM(7000, 7000);
 }
 
+// Right turn by 90 degrees
 void Motor_Turn_Right()
 {
 
@@ -386,6 +406,7 @@ void Motor_Turn_Right()
     startPWM(7000, 7000);
 }
 
+// Small left turn by 45 degrees
 void Motor_Turn_Left_45()
 {
 
@@ -401,6 +422,7 @@ void Motor_Turn_Left_45()
     startPWM(7000, 7000);
 }
 
+// Small right turn by 45 degrees
 void Motor_Turn_Right_45()
 {
 
@@ -417,6 +439,7 @@ void Motor_Turn_Right_45()
     startPWM(7000, 7000);
 }
 
+// Turns car by 180 degrees
 void Motor_uTurn()
 {
 
@@ -442,8 +465,10 @@ void startPWM(uint_fast16_t left_dutyCycle, uint_fast16_t right_dutyCycle)
     Timer_A_generatePWM(TIMER_A0_BASE, &leftPWMConfig);
 }
 
+// Encoder function to get speed of the wheel
 void Encoder_speed()
 {
+    // speed = notches * 1.1cm
 
     float leftspeed = go_left_counter * one_tick; // 1 tick = 1.1, one full rotation (20 ticks) is 22.0cm (circumference)
     float rightspeed = go_right_counter * one_tick;
@@ -501,17 +526,17 @@ void PORT2_IRQHandler(void)
 
     if (status & GPIO_PIN6)
     {
-        go_left_counter++;
+        go_left_counter++;                           // increment left wheel counter
         GPIO_clearInterruptFlag(Input_Encoder_Left); // clear interrupt flag for port 2
     }
 
     if (status & GPIO_PIN7)
     {
-        go_right_counter++;
+        go_right_counter++;                           // increment right wheel counter
         GPIO_clearInterruptFlag(Input_Encoder_Right); // clear interrupt flag for port 2
     }
     // move 90 degree to left
-    if (go_left_counter == 8 && car_move == 'A')
+    if (go_left_counter == 8 && car_move == 'A') // 8 notches to turn 90 degrees
     {
         Motor_Stop();
         printf("entered left");
@@ -524,7 +549,7 @@ void PORT2_IRQHandler(void)
     }
 
     // move 180 degree to right
-    if (go_left_counter == 16 && car_move == 'H')
+    if (go_left_counter == 16 && car_move == 'H') // 16 notches to turn 180 degrees
     {
         Motor_Stop();
         printf("entered uturn right");
@@ -536,7 +561,7 @@ void PORT2_IRQHandler(void)
         printf("entered utrun left");
     }
     // move 45 degree to right
-    if (go_left_counter == 4 && car_move == 'J')
+    if (go_left_counter == 4 && car_move == 'J') // 4 notches to turn 45 degrees
     {
         Motor_Stop();
         printf("entered 45 degree right");
