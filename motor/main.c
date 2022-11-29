@@ -129,16 +129,27 @@ void PORT1_IRQHandler(void)
             //Motor_Drive_Forward_Middle();
 //            Motor_Drive_Forward_Fast();
             Motor_Drive_Forward_Fast();
-            printf("move forward fast");
         }
         else if (i == 3){
-            Motor_uTurn();
+            Motor_Turn_Right();
         }
 
         else if (i == 4){
-            Motor_Drive_Forward_Slow();
+            Motor_Turn_Left();
         }
         else if (i == 5){
+            Motor_Turn_Left_45();
+
+        }
+        else if (i == 6){
+            Motor_Turn_Right_45();
+
+        }
+        else if (i == 7){
+            Motor_uTurn();
+
+        }
+        else if (i == 8){
             Motor_Reverse();
 
         }
@@ -150,6 +161,5 @@ void PORT1_IRQHandler(void)
     GPIO_clearInterruptFlag(GPIO_PORT_P1, status);
 
 }
-
 
 

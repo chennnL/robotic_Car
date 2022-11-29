@@ -288,10 +288,10 @@ void TA1_0_IRQHandler(void)
 void Motor_Drive_Forward_Fast()
 {
 
-    TARGET = 20; // target notch count
+    TARGET = 22; // target notch count
 
-    left_duty_cycle = 9000;
-    right_duty_cycle = 9000;
+    left_duty_cycle = 7000;
+    right_duty_cycle = 7000;
     clear_go_counter();
     car_move = 'W';
     // 90%
@@ -308,9 +308,9 @@ void Motor_Drive_Forward_Fast()
 void Motor_Drive_Forward_Slow()
 {
     clear_go_counter();
-    TARGET = 18; // target notch count
-    left_duty_cycle = 7000;
-    right_duty_cycle = 7000;
+    TARGET = 19; // target notch count
+    left_duty_cycle = 5000;
+    right_duty_cycle = 5000;
     car_move = 'W';
     // 50%
     // Set right motor to forward
