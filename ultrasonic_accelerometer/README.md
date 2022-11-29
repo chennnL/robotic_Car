@@ -12,13 +12,13 @@ The goal of the ultrasonic sensor is to aid the robotic car as it traverses thro
 
 Accelerometer: MPU6050
 
-The objective of the accelerometer is to detect and measure the height of the hump. By making use of Moving average, we were able to manipulate the raw data that was initially displayed to display out values equating to the distance. We made use of Raspberry Pico for the accelerometer. 
+
 
 The user manual for this sensor can be found here: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
 
 ## Objective
 
-The goal of the accelerometer is to measure the x, y, and z axes of the robotic car as it traverses through the maze.
+The objective of the accelerometer is to detect and measure the height of the hump. By making use of Moving average, we were able to manipulate the raw data that was initially displayed to display out values equating to the distance. We made use of Raspberry Pico for the accelerometer. 
 
 
 ### Authors
