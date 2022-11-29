@@ -50,32 +50,8 @@
                 Perpetua Sorubha Raj        [2101771]
 */
 
-/* DRIVERLIB INCLUDES */
-#include "driverlib.h"
-
-/* STANDARD INCLUDES */
-#include <stdint.h>
-#include <stdio.h>
-#include <stdbool.h>
-
-/* DEFINITIONS */
-#define MIN_DISTANCE        16.0f
-#define DISTANCE_FORMULA    58.0f
-#define TICKPERIOD          1000
-
-/* GLOBAL VARIABLES */
-static volatile uint32_t interruptCount;
-static volatile uint32_t pulseDuration;
-static volatile float calculateDistance;
-static volatile float filteredDistance;
-
-/* FUNCTION DECLARTIONS */
-static void Delay(uint32_t);
-void initHCSR04();
-static uint32_t getPulseTime();
-void launchPulse();
-double kalmanFilter(double);
-
+/* HEADER */
+#include "ultrasonic.h"
 
 // -------------------------------------------------------------------------------------------------------------------
 
