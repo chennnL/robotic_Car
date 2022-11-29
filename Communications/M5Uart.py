@@ -13,4 +13,4 @@ uart1 = machine.UART(1,tx=32,rx=33) #Create a serial port instance with transmit
 uart1.init(115200, bits=8, parity=None, stop=1) #Initialize the serial port with 115200 baud rate, 8 bits, no parity bit, and 1 stop bit
 while True:
     if uart1.any(): #If there is any content in the cache
-        label0.setText("Data = " + uart1.readline().decode("utf-8")+ "\n") #Set the label's text as Data = (uart's read) (Decoded bytes) (new line)
+        label0.setText("Data = " + uart1.readline().decode("utf-8")+ "cm \n ") #Set the label's text as Data = (uart's read) (Decoded bytes) (cm new line)
