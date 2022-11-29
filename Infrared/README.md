@@ -51,8 +51,8 @@ Refer to Barcode Analysis.docx for our detailed analysis.
 (5) char scanBarcode(void);  
 (6) void setupWheelEncoders(void);  
 (7) double getWheelTime( wheelTime* );  
-(8) void leftWheelSpeed(void);  
-(9) void rightWheelSpeed(void);  
+(8) void LeftWheelSpeed(void);  
+(9) void RightWheelSpeed(void);  
   
 
 #### Interrupt Used:  
