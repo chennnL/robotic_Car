@@ -50,6 +50,8 @@ gpio_input_interrupt.obj: /Users/dwdr/Downloads/msp432_driverlib_3_21_00_05/driv
 gpio_input_interrupt.obj: /Users/dwdr/Downloads/msp432_driverlib_3_21_00_05/driverlib/MSP432P4xx/timer_a.h
 gpio_input_interrupt.obj: /Users/dwdr/Downloads/msp432_driverlib_3_21_00_05/driverlib/MSP432P4xx/uart.h
 gpio_input_interrupt.obj: /Users/dwdr/Downloads/msp432_driverlib_3_21_00_05/driverlib/MSP432P4xx/wdt_a.h
+gpio_input_interrupt.obj: /Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stdio.h
+gpio_input_interrupt.obj: /Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stdarg.h
 
 ../gpio_input_interrupt.c:
 
@@ -150,4 +152,8 @@ gpio_input_interrupt.obj: /Users/dwdr/Downloads/msp432_driverlib_3_21_00_05/driv
 /Users/dwdr/Downloads/msp432_driverlib_3_21_00_05/driverlib/MSP432P4xx/uart.h:
 
 /Users/dwdr/Downloads/msp432_driverlib_3_21_00_05/driverlib/MSP432P4xx/wdt_a.h:
+
+/Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stdio.h:
+
+/Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include/stdarg.h:
 

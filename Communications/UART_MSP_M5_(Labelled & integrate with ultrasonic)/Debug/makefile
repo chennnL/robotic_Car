@@ -121,35 +121,35 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-m5Done.out \
+gpio_input_interrupt.out \
 
 EXE_OUTPUTS__QUOTED += \
-"m5Done.out" \
+"gpio_input_interrupt.out" \
 
 BIN_OUTPUTS += \
-m5Done.bin \
+gpio_input_interrupt.bin \
 
 BIN_OUTPUTS__QUOTED += \
-"m5Done.bin" \
+"gpio_input_interrupt.bin" \
 
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "m5Done.out"
+	@$(MAKE) --no-print-directory -Onone "gpio_input_interrupt.out"
 
 # Tool invocations
-m5Done.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+gpio_input_interrupt.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"/Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --advice:power=all --define=__MSP432P401R__ --define=TARGET_IS_MSP432P4XX --define=ccs -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number -z -m"m5Done.map" --stack_size=512 -i"/Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/lib" -i"/Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="m5Done_linkInfo.xml" --rom_model -o "m5Done.out" $(ORDERED_OBJS)
+	"/Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --advice:power=all --define=__MSP432P401R__ --define=TARGET_IS_MSP432P4XX --define=ccs -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number -z -m"gpio_input_interrupt.map" --stack_size=512 -i"/Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/lib" -i"/Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="gpio_input_interrupt_linkInfo.xml" --rom_model -o "gpio_input_interrupt.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build
 
-m5Done.bin: $(EXE_OUTPUTS)
+gpio_input_interrupt.bin: $(EXE_OUTPUTS)
 	@echo 'Building secondary target: "$@"'
 	@echo 'Invoking: Arm Hex Utility'
-	"/Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/bin/armhex" --diag_wrap=off -o "m5Done.bin" $(EXE_OUTPUTS__QUOTED)
+	"/Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/bin/armhex" --diag_wrap=off -o "gpio_input_interrupt.bin" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building secondary target: "$@"'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build
@@ -163,7 +163,7 @@ clean:
 	-@echo ' '
 
 post-build:
-	-/Applications/CodeComposer/ccs1030/ccs/utils/tiobj2bin/tiobj2bin m5Done.out m5Done.bin /Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/bin/armofd /Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/bin/armhex /Applications/CodeComposer/ccs1030/ccs/utils/tiobj2bin/mkhex4bin
+	-/Applications/CodeComposer/ccs1030/ccs/utils/tiobj2bin/tiobj2bin gpio_input_interrupt.out gpio_input_interrupt.bin /Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/bin/armofd /Applications/CodeComposer/ccs1030/ccs/tools/compiler/ti-cgt-arm_20.2.4.LTS/bin/armhex /Applications/CodeComposer/ccs1030/ccs/utils/tiobj2bin/mkhex4bin
 	-@echo ' '
 
 .PHONY: all clean dependents
