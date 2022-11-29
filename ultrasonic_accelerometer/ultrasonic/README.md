@@ -1,5 +1,6 @@
 ## Ultrasonic
 
+
 #### Port & Pins Used:
 (1) P3.6    (Trigger)   
 (2) P3.7    (Echo)
