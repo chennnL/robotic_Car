@@ -1,6 +1,4 @@
-# Ultrasonic
-
-Ultrasonic Sensor: HC-SR04
+# Ultrasonic (HC-SR04)
 
 The user manual for this sensor can be found here: https://web.eece.maine.edu/~zhu/book/lab/HC-SR04%20User%20Manual.pdf
 
@@ -8,11 +6,7 @@ The user manual for this sensor can be found here: https://web.eece.maine.edu/~z
 
 The goal of the ultrasonic sensor is to aid the robotic car as it traverses through a maze using object detection. The sensor will constantly shoot out 10 microsecond pulses at an interval of 60 milliseconds; the duration of those pulses will be stored and used to calculate the distance.
 
-# Accelerometer
-
-Accelerometer: MPU6050
-
-
+# Accelerometer (MPU6050)
 
 The user manual for this sensor can be found here: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
 
