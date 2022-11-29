@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "PWM.h"    // placeholder for PWM functions
 
-#pragma region Constants Declarations
 // Compass Index Constants for _wallStatus, _routeVisited
 #define NORTHIDX 0
 #define SOUTHIDX 1
@@ -19,9 +18,7 @@
 // Graph and Weight Definition
 #define NUMOFVERTICES 20
 #define WEIGHT 27
-#pragma endregion
 
-#pragma region Graph Structure Declarations
 // Coordinates Class Definition
 typedef struct Coordinates
 {
@@ -53,9 +50,7 @@ typedef struct Graph
     struct VertexProperty **vertexPropertyList; // an list of vertex properties
     struct Vertex **adjLists;                   // an adjacency vertex list
 } Graph;
-#pragma endregion
 
-#pragma region Graph Methods Declarations
 /*  Function to print x and y coordinates   */
 void printCoordinates(Coordinates *pCoords)
 {
@@ -172,9 +167,7 @@ void printVertexProperties(Graph *graph)
         printf("RouteVisited: %d %d %d %d\n\n", tempVertProperty->_routeVisited[0], tempVertProperty->_routeVisited[1], tempVertProperty->_routeVisited[2], tempVertProperty->_routeVisited[3]);
     }
 }
-#pragma endregion
 
-#pragma region Mapping Subfunctions Declarations
 /*  Function to update routeVisited based on the bearings of the new route travelled at vertex
     Updates directly to pRouteVisited by pointer    */
 void updateRouteVisited(int* pRouteVisited, int pCarBearing)
@@ -561,9 +554,7 @@ void navigateToDestination(int* pShortestPathToDest, int pPathSize, VertexProper
     }
     printf("\nNavigation is complete. Resume mapping");
 }
-#pragma endregion
 
-#pragma region dijkstra
 /* Using: Basic Dijkstra to server as the working version                             */
 /* Input from mapping: Graph, Vs, Vt, shortestPathSrcToDist                           */
 /* Determine distances of shortest paths from source_vertex to all vertices           */
@@ -663,7 +654,6 @@ int dijkstraWorking(struct Graph *graph, int source_vertex, int target_vertex, i
     printf("\nNumber of vertices in path array sending to mapping: %d\n", i); // return number of vertices in path array to mapping
     return i;
 }
-#pragma endregion
 
 /*  Car Mapping Algorithm
     Local variables of the algorithm
@@ -822,7 +812,6 @@ void carMappingAlgorithm(Graph* graph, int pCarBearings)
         }
     }
 }
-#pragma endregion
 
 int main()
 {
