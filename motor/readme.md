@@ -53,3 +53,4 @@ Port 2 Pin 5 -> Motor Right Out
 Chen Wujie 2101169
 Izz Danial 2100735
 Ayan Priyadarshi 2101149
+Shyam Prasad 2100756
